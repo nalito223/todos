@@ -107,6 +107,12 @@ function App() {
   return (
     <div className="App-container">
     <h1 className="App-header">Todos</h1>
+    <form>
+      <input placeholder="Type a todo..."></input>
+      <input type="date"></input>
+      <select><option>Backlog</option></select>
+      <button>Add</button>
+    </form>
     <DragDropContext
       onDragEnd={onDragEnd}
     >
