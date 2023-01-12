@@ -20,6 +20,7 @@ const Task = ({ task, index }) => {
       >
         <p>{task.content}</p>
         <p>{task.date}</p>
+        <button>Delete</button>
         </Container>
       )}
     </Draggable>
