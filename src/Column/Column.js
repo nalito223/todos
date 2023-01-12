@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Task from "../Task/Task"
+import { DragDropContext, Droppable } from "react-beautiful-dnd"
 
 const Container = styled.div`
   margin: 8px;
@@ -18,10 +19,19 @@ const Column = ({ column, tasks }) => {
   return (
     <Container>
       <Title>{column.title}</Title>
-      <TaskList>
-        {console.log("LOOK HERE",tasks)}
-        {tasks.map(task => <Task key={task.id} task={task} />)}
-      </TaskList>
+      <Droppable droppableId={column.id}>
+        {provided => (
+          <TaskList
+          ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {tasks.map((task, index) => (
+              <Task key={task.id} task={task} index={index} />
+            ))}
+            {provided.placeholder}
+          </TaskList>
+        )}
+      </Droppable>
     </Container>
   )
 }
