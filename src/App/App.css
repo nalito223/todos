@@ -1,17 +1,16 @@
-/* .app-container {
-  width: 100%;
-  background-color: #282c34;
-  min-height: 100vh;
-  height: 100vh;
-  color: white;
-  display: flex;
+.App-container {
+  /* background-color: #282c34;  */
+  /* min-height: 100vh; */
+  display: flex; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+  height: 100vh;
+  width: 100vw
+} 
 
-.app-header {
+.App-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-} */
+} 

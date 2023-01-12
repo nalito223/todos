@@ -7,7 +7,20 @@ import Board from "../Board/Board"
 import initialData1 from "../initial-data"
 import Column from "../Column/Column"
 import '@atlaskit/css-reset'
+import styled from "styled-components"
 import { DragDropContext } from 'react-beautiful-dnd'
+
+const Container = styled.div`
+  display: flex;
+  height: 75vh;
+  width: 90vw;
+
+
+
+ 
+  
+
+`
 
 function App() {
   const body =
@@ -30,28 +43,31 @@ function App() {
   }, [])
 
   const onDragEnd = (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId } = result
 
     if (!destination) {
-      return;
+      return
     }
 
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      return;
+      return
     }
 
-    const column = initialData.columns[source.droppableId];
-    const newTaskIds = Array.from(column.taskIds);
-    newTaskIds.splice(source.index, 1);
-    newTaskIds.splice(destination.index, 0, draggableId);
+    const start = initialData.columns[source.droppableId]
+    const finish = initialData.columns[destination.droppableId]
+
+    if(start === finish) {
+    const newTaskIds = Array.from(start.taskIds)
+    newTaskIds.splice(source.index, 1)
+    newTaskIds.splice(destination.index, 0, draggableId)
 
     const newColumn = {
-      ...column,
+      ...start,
       taskIds: newTaskIds,
-    };
+    }
 
     const newState = {
       ...initialData,
@@ -59,21 +75,50 @@ function App() {
         ...initialData.columns,
         [newColumn.id]: newColumn,
       },
-    };
+    }
 
-    setInitialData(newState);
-  };
+    setInitialData(newState)
+    return
+  }
+  const startTaskIds = Array.from(start.taskIds)
+  startTaskIds.splice(source.index, 1)
+  const newStart = {
+    ...start,
+    taskIds: startTaskIds,
+  }
+  const finishTaskIds = Array.from(finish.taskIds)
+  finishTaskIds.splice(destination.index, 0, draggableId)
+  const newFinish = {
+    ...finish,
+    taskIds: finishTaskIds
+  }
+
+  const newState = {
+    ...initialData,
+    columns: {
+      ...initialData.columns,
+      [newStart.id]: newStart,
+      [newFinish.id]: newFinish,
+    }
+  }
+  setInitialData(newState)
+  }
 
   return (
+    <div className="App-container">
+    <h1 className="App-header">Todos</h1>
     <DragDropContext
       onDragEnd={onDragEnd}
     >
-      {initialData.columnOrder.map(columnId => {
-        const column = initialData.columns[columnId]
-        const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
-        return <Column key={column.id} column={column} tasks={tasks} />
-      })}
+      <Container>
+        {initialData.columnOrder.map(columnId => {
+          const column = initialData.columns[columnId]
+          const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
+          return <Column key={column.id} column={column} tasks={tasks} />
+        })}
+      </Container>
     </DragDropContext>
+    </div>
   )
 }
 
