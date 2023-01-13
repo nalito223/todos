@@ -2,13 +2,14 @@
 import './App.css'
 import { Route, Routes, NavLink } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { getData, postData, deleteData, putData } from "../apicalls"
+import { getData, postData, deleteData, putData, } from "../apicalls"
 // import boardObject from "../Board/Board"
 import boardObject from "../initial-data"
 import Column from "../Column/Column"
 import '@atlaskit/css-reset'
 import styled from "styled-components"
 import { DragDropContext } from 'react-beautiful-dnd'
+import Form from "../Form/Form"
 
 const Container = styled.div`
   display: flex;
@@ -17,44 +18,45 @@ const Container = styled.div`
 `
 
 function App() {
-  const body =
-    { content: 'Do thing 5', date: '2018-07-22', status: 'on deck', }
 
-
+  const [run, setRun] = useState(false)
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
 
   const makeDNDObject = (response) => {
-    console.log("data", data)
-    response.forEach((task) => {
-      if (task.status.toLowerCase() === "backlog") {
-        initialData.columns["column-1"].taskIds.push(String(task.id))
-      } else if (task.status.toLowerCase() === "on deck") {
-        initialData.columns["column-2"].taskIds.push(String(task.id))
-      } else if (task.status.toLowerCase() === "in progress") {
-        initialData.columns["column-3"].taskIds.push(String(task.id))
-      } else if (task.status.toLowerCase() === "done") {
-        initialData.columns["column-4"].taskIds.push(String(task.id))
-      }
-      boardObject.tasks[String(task.id)] = task
+    const sorted = [...response]
+    sorted.sort((a, b) => {
+      return a.destination.index - b.destination.index
     })
-    console.log("boardObject", boardObject)
-    setInitialData(boardObject)
+    sorted.forEach((task) => {
+      if (task.destination.droppableId === "column-1") {
+        initialData.columns["column-1"].taskIds.push(String(task.id))
+      } else if (task.destination.droppableId === "column-2") {
+        initialData.columns["column-2"].taskIds.push(String(task.id))
+      } else if (task.destination.droppableId === "column-3") {
+        initialData.columns["column-3"].taskIds.push(String(task.id))
+      } else if (task.destination.droppableId === "column-4") {
+        initialData.columns["column-4"].taskIds.push(String(task.id))
+      } else {
+        console.log("ISSUE AT DNDOBJECT()")
+      }
+      // XX
+      // boardObject.tasks[String(task.id)] = task
+      initialData.tasks[String(task.id)] = task
+
+    })
+    console.log("HERE", initialData)
+    // XX
+    // setInitialData(boardObject)
   }
 
-  // useEffect(() => {
-  //   // setInitialData(initialData1)
-  //   getData("http://localhost:3001/todos").then((response) => setData(response))
-  //   postData(body, "http://localhost:3001/todos").then((response) => console.log("POST", response))
-  //   makeDNDObject()
-  //   // putData(bodyPut, "http://localhost:3001/todos/1").then((response) => console.log("PUT",response))
-  // }, [])
 
   const initApp = async () => {
     try {
       const response = await getData("http://localhost:3001/todos")
       setData(response)
       makeDNDObject(response)
+      // postData(body, "http://localhost:3001/todos").then((response) => console.log("POST RESPONSE", response))
     }
     catch (error) {
       console.log(error)
@@ -63,7 +65,7 @@ function App() {
 
   useEffect(() => {
     initApp()
-    console.log("data has loaded!", data)
+    console.log("initApp()")
   }, [])
 
   const onDragEnd = (result) => {
@@ -99,8 +101,20 @@ function App() {
           ...initialData.columns,
           [newColumn.id]: newColumn,
         },
-      }
 
+      }
+      let object = newState
+      object.tasks[draggableId].destination = destination
+
+      Object.keys(object.tasks).forEach((key) => {
+        object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id)
+      })
+
+      console.log(object)
+      Object.keys(object.tasks).forEach((key) => {
+        putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`)
+        // .then((response) => console.log("PUT", response))
+      })
       setInitialData(newState)
       return
     }
@@ -125,26 +139,43 @@ function App() {
         [newFinish.id]: newFinish,
       }
     }
+    console.log("NEW FINISH", newFinish)
+    console.log("DESTINATION", destination)
+    console.log("SOURCE", source)
+    console.log("DRAGGABLE ID", draggableId)
+    console.log("NEW STATE", newState)
+
+    let object = newState
+    object.tasks[draggableId].destination = destination
+
+    Object.keys(object.tasks).forEach((key) => {
+      Object.keys(object.columns).forEach((columnId) => {
+        object.columns[columnId].taskIds.includes(object.tasks[key].id)
+        if (object.columns[columnId].taskIds.includes(object.tasks[key].id)) {
+          object.tasks[key].destination.index = Number(object.columns[columnId].taskIds.indexOf(String(object.tasks[key].id)))
+        }
+      })
+    })
+
+    Object.keys(object.tasks).forEach((key) => {
+      putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`).then((response) => console.log(response))
+
+    })
     setInitialData(newState)
+
   }
 
   return (
     <div className="App-container">
-      {console.log("data in return",data)}
+      {console.log("initialData in return", initialData)}
       <h1 className="App-header">Todos</h1>
-      <form>
-        <input placeholder="Type a todo..."></input>
-        <input type="date"></input>
-        <select><option>Backlog</option></select>
-        <button>Add</button>
-      </form>
+      <Form />
       <DragDropContext
         onDragEnd={onDragEnd}
       >
         <Container>
           {initialData.columnOrder.map(columnId => {
             const column = initialData.columns[columnId]
-            console.log("COLUMN.TASKIds",column.taskIds)
             const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
             return <Column key={column.id} column={column} tasks={tasks} />
           })}

@@ -43,7 +43,7 @@ function putData(body, url) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log(response)
+        // console.log(response)
         return response.json()
       } else {
         throw Error(response.statusText)
@@ -63,7 +63,7 @@ function deleteData(url) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log("DELETE RESPONSE",response)
+        // console.log("DELETE RESPONSE",response)
         return response.json()
       } else {
         throw Error(response.statusText)
