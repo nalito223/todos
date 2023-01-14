@@ -1,6 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { Draggable } from "react-beautiful-dnd"
+import { getData, postData, deleteData, putData, } from "../apicalls"
 
 const Container = styled.div`
 border: 1px solid lightgrey;
@@ -10,6 +11,11 @@ margin-bottom: 8px;
 background-color: white;
 `
 const Task = ({ task, index }) => {
+
+  const deleteTodo = (event) => {
+    console.log("DELETING")
+    deleteData(`http://localhost:3001/todos/${task.id}`)
+  } 
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (
@@ -20,7 +26,7 @@ const Task = ({ task, index }) => {
       >
         <p>{task.content}</p>
         <p>{task.date}</p>
-        <button>Delete</button>
+        <button onClick={(event) => deleteTodo()}>Delete</button>
         </Container>
       )}
     </Draggable>

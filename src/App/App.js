@@ -19,9 +19,34 @@ const Container = styled.div`
 
 function App() {
 
-  const [run, setRun] = useState(false)
+  // const [run, setRun] = useState(false)
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
+  // const [newTask, setNewTask] = useState({})
+
+  const addTask = async (newTodo) => {
+    // setData([])
+    // setInitialData(boardObject)
+    console.log("MADE it to ASK TASK")
+    // try {
+    //   const response = await getData("http://localhost:3001/todos")
+    //   setData(response)
+    //   makeDNDObject(response)
+    // }
+    // catch (error) {
+    //   console.log(error)
+    // }
+    // initApp()
+    // let id = newTodo.id
+    // let newInitialData = {...initialData}
+    // initialData.tasks.newTodo = newTodo
+    // newInitialData.tasks[id] = newTodo
+    // console.log("initialData", newInitialData)
+    // setInitialData(newInitialData)
+    // setData(newInitialData.tasks)
+    // makeDNDObject(newInitialData.tasks)
+    // return initialData
+  }
 
   const makeDNDObject = (response) => {
     const sorted = [...response]
@@ -45,9 +70,10 @@ function App() {
       initialData.tasks[String(task.id)] = task
 
     })
+    // forceUpdate()
     console.log("HERE", initialData)
     // XX
-    // setInitialData(boardObject)
+    // setInitialData(initialData)
   }
 
 
@@ -55,8 +81,10 @@ function App() {
     try {
       const response = await getData("http://localhost:3001/todos")
       setData(response)
+      // setInitialData(boardObject)
       makeDNDObject(response)
       // postData(body, "http://localhost:3001/todos").then((response) => console.log("POST RESPONSE", response))
+
     }
     catch (error) {
       console.log(error)
@@ -105,9 +133,9 @@ function App() {
       }
       let object = newState
       object.tasks[draggableId].destination = destination
-
+      //unclear if the + 1 is needed. Added to solve indexes of -1 in the server. Didn't add to other conditional.
       Object.keys(object.tasks).forEach((key) => {
-        object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id)
+        object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id) + 1
       })
 
       console.log(object)
@@ -169,7 +197,7 @@ function App() {
     <div className="App-container">
       {console.log("initialData in return", initialData)}
       <h1 className="App-header">Todos</h1>
-      <Form />
+      <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} addTask={addTask} />
       <DragDropContext
         onDragEnd={onDragEnd}
       >
