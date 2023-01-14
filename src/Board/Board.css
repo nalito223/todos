@@ -1,0 +1,40 @@
+/* .board-container {
+  display: flex;
+  flex-direction: row;
+  height: 75vh;
+  width: 90vw;
+  align-items: center;
+} */
+/* 
+.columns {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: 75%;
+  background-color: rgba(255, 255, 255, 0.05);
+  height: 100%;
+  border-radius: 7px;
+} */
+
+
+/* .columns {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .card {
+  border-radius: 7px;
+  height: 10vh;
+  width: 95%;
+  background-color: lightblue;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: move
+
+} */
+
+/* .draggable.dragging {
+  opacity: .5;
+} */
