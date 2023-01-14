@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getData, postData, deleteData, putData, } from "../apicalls"
-
+import "../Form/Form.css"
 
 const Form = (props) => {
-  const [content, setContent] = useState("No title")
-  const [column, setColumn] = useState('column-1')
-  const [date, setDate] = useState("2018-07-22")
-
-  const clearInputs = () => {
-    setContent("No title")
-    setColumn("column-1")
-    setDate("2018-07-22")
-  }
 
   const getDate = new Date()
   let day = getDate.getDate()
@@ -19,45 +10,58 @@ const Form = (props) => {
   let year = getDate.getFullYear()
   let currentDate = `${year}-${month}-${day}`
 
+  const [contentData, setContent] = useState("No title")
+  const [columnData, setColumn] = useState("column-1")
+  const [dateData, setDate] = useState(currentDate)
+
+  const clearInputs = () => {
+    setContent("No title")
+    setColumn("column-1")
+    setDate(currentDate)
+  }
+
+
   const submitTodo = event => {
     event.preventDefault()
     const newTodo = {
       id: String(Date.now()),
-      content: content,
-      date: date,
-      status: column,
-      destination: { droppableId: column, index: 25 }
-
+      content: contentData,
+      date: dateData,
+      status: columnData,
+      destination: { droppableId: columnData, index: 25 }
     }
     console.log("NEW TASK", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
-    window.location.reload(true)
     clearInputs()
+    window.location.reload(true)
   }
 
   return (
     <form>
       <input
+        className="contentInput"
         placeholder="Make a todo..."
         type="text"
         name="content"
-        value={content}
+        value={contentData}
         onChange={event => setContent(event.target.value)}
       ></input>
 
       <input
+      className="dateInput"
         type="date"
         name="date"
-        value={currentDate}
+        value={dateData}
         onChange={event => setDate(event.target.value)}
         min={currentDate}
         data-date-format="YYYY-MMMM-DD"
       ></input>
 
       <select
+      className="columnInput"
         name="column"
         id="column"
-        value={column}
+        value={columnData}
         onChange={event => setColumn(event.target.value)}
       >
         <option value="column-1">Backlog</option>
@@ -67,6 +71,7 @@ const Form = (props) => {
       </select>
 
       <button
+      className="addButton"
         onClick={event => submitTodo(event)}
       >Add</button>
     </form>

@@ -139,10 +139,12 @@ function App() {
         object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id) + 1
       })
 
-      console.log("LOOK HERE 2", object.tasks)
+      // console.log("LOOK HERE 2", object.tasks)
       Object.keys(object.tasks).forEach((key) => {
-        putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`)
-        // .then((response) => console.log("PUT", response))
+        let newPost = object.tasks[key]
+        console.log("newPost 2", newPost)
+        putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
+        console.log("new post 2 AFTER", newPost)
       })
       setInitialData(newState)
       return
@@ -187,8 +189,10 @@ function App() {
     })
 
     Object.keys(object.tasks).forEach((key) => {
-      console.log("LOOK HERE 1", object.tasks)
-      putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`).then((response) => console.log("PUT RESPONSE",response))
+      let newPost = object.tasks[key]
+      console.log("LOOK HERE 1", newPost)
+      putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
+      // .then((response) => console.log("PUT RESPONSE",response))
 
     })
     setInitialData(newState)
