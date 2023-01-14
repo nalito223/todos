@@ -7,11 +7,9 @@ const Form = (props) => {
   const [column, setColumn] = useState('column-1')
   const [date, setDate] = useState('2018-07-22')
   
-
-
   const clearInputs = () => {
     setContent("")
-    setColumn("")
+    setColumn("column-1")
     setDate("")
   }
 
@@ -21,7 +19,7 @@ const Form = (props) => {
       id: String(Date.now()),
       content: content || 'No title',
       date: date || "2018-07-22",
-      status: column || "not defined",
+      status: column,
       destination: { droppableId: column, index: 25 }
     }
     console.log("New Todo", newTodo)
