@@ -22,12 +22,14 @@ function App() {
   // const [run, setRun] = useState(false)
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
+  const [randomState, setRandomState] = useState()
   // const [newTask, setNewTask] = useState({})
 
-  const addTask = async (newTodo) => {
+  const reset = async (newTodo) => {
     // setData([])
     // setInitialData(boardObject)
     console.log("MADE it to ASK TASK")
+    window.location.reload(true)
     // try {
     //   const response = await getData("http://localhost:3001/todos")
     //   setData(response)
@@ -197,7 +199,7 @@ function App() {
     <div className="App-container">
       {console.log("initialData in return", initialData)}
       <h1 className="App-header">Todos</h1>
-      <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} addTask={addTask} />
+      <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} reset={reset} />
       <DragDropContext
         onDragEnd={onDragEnd}
       >

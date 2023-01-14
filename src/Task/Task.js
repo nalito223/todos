@@ -15,6 +15,7 @@ const Task = ({ task, index }) => {
   const deleteTodo = (event) => {
     console.log("DELETING")
     deleteData(`http://localhost:3001/todos/${task.id}`)
+    window.location.reload(true)
   } 
   return (
     <Draggable draggableId={task.id} index={index}>

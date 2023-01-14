@@ -6,7 +6,7 @@ const Form = (props) => {
   const [content, setContent] = useState('')
   const [column, setColumn] = useState('column-1')
   const [date, setDate] = useState('2018-07-22')
-  
+
   const clearInputs = () => {
     setContent("")
     setColumn("column-1")
@@ -24,7 +24,8 @@ const Form = (props) => {
     }
     console.log("New Todo", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
-    props.addTask(newTodo)
+    // props.addTask(newTodo)
+    window.location.reload(true)
     clearInputs()
   }
 
