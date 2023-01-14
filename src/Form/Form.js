@@ -5,7 +5,7 @@ import { getData, postData, deleteData, putData, } from "../apicalls"
 const Form = (props) => {
   const [content, setContent] = useState('')
   const [column, setColumn] = useState('column-1')
-  const [date, setDate] = useState('2018-07-22')
+  const [date, setDate] = useState('')
 
   const clearInputs = () => {
     setContent("")
@@ -13,18 +13,25 @@ const Form = (props) => {
     setDate("")
   }
 
+  const getDate = new Date()
+  console.log('NEW DATE', getDate)
+  let day = getDate.getDate()
+  let month = ("0" + (getDate.getMonth() + 1)).slice(-2)
+  let year = getDate.getFullYear()
+  let currentDate = `${year}-${month}-${day}`
+  console.log("DATE", currentDate)
+
   const submitTodo = event => {
     event.preventDefault()
     const newTodo = {
       id: String(Date.now()),
       content: content || 'No title',
-      date: date || "2018-07-22",
+      date: date || currentDate,
       status: column,
       destination: { droppableId: column, index: 25 }
     }
     console.log("New Todo", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
-    // props.addTask(newTodo)
     window.location.reload(true)
     clearInputs()
   }
@@ -43,8 +50,10 @@ const Form = (props) => {
       <input
         type="date"
         name="date"
-        value={date}
+        value={currentDate}
         onChange={event => setDate(event.target.value)}
+        min={currentDate}
+        data-date-format="YYYY-MMMM-DD"
       ></input>
 
       <select
