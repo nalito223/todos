@@ -4,12 +4,15 @@ import { Draggable } from "react-beautiful-dnd"
 import { getData, postData, deleteData, putData, } from "../apicalls"
 
 const Container = styled.div`
-border: 1px solid lightgrey;
+border: 2px solid rgba(255, 255, 255, 0.2);
 padding: 8px;
-border-radius: 2px;
 margin-bottom: 8px;
-background-color: white;
+border-radius: 7px;
+background-color: none;
+&:hover {
+  border-color: #b393d3;
 `
+// background-color: rgba(255, 255, 255, 0.05);
 const Task = ({ task, index }) => {
 
   const deleteTodo = (event) => {
@@ -26,7 +29,7 @@ const Task = ({ task, index }) => {
         ref={provided.innerRef}
       >
         <p>{task.content}</p>
-        <p>{task.date}</p>
+        <p>{`Due: ${task.date}`}</p>
         <button onClick={(event) => deleteTodo()}>Delete</button>
         </Container>
       )}

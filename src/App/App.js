@@ -28,7 +28,7 @@ function App() {
   const reset = async (newTodo) => {
     // setData([])
     // setInitialData(boardObject)
-    console.log("MADE it to ASK TASK")
+  
     window.location.reload(true)
     // try {
     //   const response = await getData("http://localhost:3001/todos")
@@ -73,7 +73,6 @@ function App() {
 
     })
     // forceUpdate()
-    console.log("HERE", initialData)
     // XX
     // setInitialData(initialData)
   }
@@ -140,7 +139,7 @@ function App() {
         object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id) + 1
       })
 
-      console.log(object)
+      console.log("LOOK HERE 2", object.tasks)
       Object.keys(object.tasks).forEach((key) => {
         putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`)
         // .then((response) => console.log("PUT", response))
@@ -188,7 +187,8 @@ function App() {
     })
 
     Object.keys(object.tasks).forEach((key) => {
-      putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`).then((response) => console.log(response))
+      console.log("LOOK HERE 1", object.tasks)
+      putData(object.tasks[key], `http://localhost:3001/todos/${object.tasks[key].id}`).then((response) => console.log("PUT RESPONSE",response))
 
     })
     setInitialData(newState)
@@ -197,7 +197,6 @@ function App() {
 
   return (
     <div className="App-container">
-      {console.log("initialData in return", initialData)}
       <h1 className="App-header">Todos</h1>
       <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} reset={reset} />
       <DragDropContext

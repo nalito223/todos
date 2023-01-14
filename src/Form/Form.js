@@ -3,44 +3,42 @@ import { getData, postData, deleteData, putData, } from "../apicalls"
 
 
 const Form = (props) => {
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState("No title")
   const [column, setColumn] = useState('column-1')
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState("2018-07-22")
 
   const clearInputs = () => {
-    setContent("")
+    setContent("No title")
     setColumn("column-1")
-    setDate("")
+    setDate("2018-07-22")
   }
 
   const getDate = new Date()
-  console.log('NEW DATE', getDate)
   let day = getDate.getDate()
   let month = ("0" + (getDate.getMonth() + 1)).slice(-2)
   let year = getDate.getFullYear()
   let currentDate = `${year}-${month}-${day}`
-  console.log("DATE", currentDate)
 
   const submitTodo = event => {
     event.preventDefault()
     const newTodo = {
       id: String(Date.now()),
-      content: content || 'No title',
-      date: date || currentDate,
+      content: content,
+      date: date,
       status: column,
       destination: { droppableId: column, index: 25 }
+
     }
-    console.log("New Todo", newTodo)
+    console.log("NEW TASK", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
     window.location.reload(true)
     clearInputs()
   }
 
-
   return (
     <form>
       <input
-        placeholder="Type a todo..."
+        placeholder="Make a todo..."
         type="text"
         name="content"
         value={content}
