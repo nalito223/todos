@@ -1,3 +1,5 @@
+//GET DATA
+
 function getData(url) {
   return fetch(url)
     .then((response) => {
@@ -8,10 +10,11 @@ function getData(url) {
       }
     })
     .catch(error => {
-      console.log("GET error: ", error)
+      console.log("Fetch error: ", error)
     })
 }
-//post data
+
+// POST DATA
 function postData(body, url) {
   return fetch(url, {
     method: 'POST',
@@ -32,7 +35,8 @@ function postData(body, url) {
       console.log("Fetch error: ", error)
     })
 }
-// put data 
+
+// PUT DATA
 function putData(body, url) {
   return fetch(url, {
     method: 'PUT',
@@ -43,7 +47,6 @@ function putData(body, url) {
   })
     .then((response) => {
       if (response.ok) {
-        // console.log(response)
         return response.json()
       } else {
         throw Error(response.statusText)
@@ -53,7 +56,8 @@ function putData(body, url) {
       console.log("Fetch error: ", error)
     })
 }
-//delete data
+
+// DELETE DATA
 function deleteData(url) {
   return fetch(url, {
     method: 'DELETE',
@@ -63,7 +67,6 @@ function deleteData(url) {
   })
     .then((response) => {
       if (response.ok) {
-        // console.log("DELETE RESPONSE",response)
         return response.json()
       } else {
         throw Error(response.statusText)

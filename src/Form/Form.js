@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { getData, postData, deleteData, putData, } from "../apicalls"
+import React, { useState } from 'react'
+import { postData } from "../apicalls"
 import "../Form/Form.css"
 
-const Form = (props) => {
+const Form = () => {
 
   const getDate = new Date()
   let day = getDate.getDate()
@@ -20,7 +20,6 @@ const Form = (props) => {
     setDate(currentDate)
   }
 
-
   const submitTodo = event => {
     event.preventDefault()
     const newTodo = {
@@ -30,7 +29,6 @@ const Form = (props) => {
       status: columnData,
       destination: { droppableId: columnData, index: 25 }
     }
-    console.log("NEW TASK", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
     clearInputs()
     window.location.reload(true)
@@ -48,7 +46,7 @@ const Form = (props) => {
       ></input>
 
       <input
-      className="dateInput"
+        className="dateInput"
         type="date"
         name="date"
         value={dateData}
@@ -58,7 +56,7 @@ const Form = (props) => {
       ></input>
 
       <select
-      className="columnInput"
+        className="columnInput"
         name="column"
         id="column"
         value={columnData}
@@ -71,7 +69,7 @@ const Form = (props) => {
       </select>
 
       <button
-      className="addButton"
+        className="addButton"
         onClick={event => submitTodo(event)}
       >Add</button>
     </form>
