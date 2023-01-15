@@ -4,7 +4,7 @@
   padding-right: 10px;
   padding-left: 10px;
   border: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 7px;
   /* width: 350px; */
   width: 35vw;
@@ -17,7 +17,7 @@
   padding-right: 10px;
   padding-left: 10px;
   border: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 7px;
   margin-right: 10px;
   font-size: 2.5vh;
@@ -28,7 +28,7 @@
   padding-right: 10px;
   padding-left: 10px;
   border: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 7px;
   margin-right: 10px;
   font-size: 2.5vh;
@@ -40,8 +40,33 @@
   padding-right: 10px;
   padding-left: 10px;
   border: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 7px;
   font-size: 2.5vh;
   cursor: pointer;
 }
+
+.contentInput:focus { 
+  outline: none !important;
+  border-color: #b393d3;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.dateInput:focus {
+  outline: none !important;
+  border-color: #b393d3;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.columnInput:focus {
+  outline: none !important;
+  border-color: #b393d3;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.addButton:focus {
+  outline: none !important;
+  border-color: #b393d3;
+  box-shadow: 0 0 10px #719ECE;
+}
+

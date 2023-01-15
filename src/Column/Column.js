@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Task from "../Task/Task"
 import { DragDropContext, Droppable } from "react-beautiful-dnd"
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
   margin: 8px;
@@ -52,5 +53,11 @@ const Column = ({ column, tasks }) => {
     </Container>
   )
 }
+
+Column.propTypes = {
+  column: PropTypes.object.isRequired, 
+  tasks: PropTypes.array.isRequired
+};
+
 
 export default Column

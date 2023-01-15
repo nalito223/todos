@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd"
 import { getData, postData, deleteData, putData, } from "../apicalls"
 import icon from "../images/icon.png"
 import "../Task/Task.css"
+import PropTypes from 'prop-types';
 
 
 const Container = styled.div`
@@ -25,7 +26,7 @@ const Task = ({ task, index }) => {
   let yearTomorrow = tomorrow.getFullYear()
   let tomorrowDate = `${yearTomorrow}-${monthTomorrow}-${dayTomorrow}`
 
-  console.log("TOMORROW", tomorrowDate)
+
 
   const getDate = new Date()
   let day = getDate.getDate()
@@ -48,8 +49,6 @@ const Task = ({ task, index }) => {
       return false 
     }
   }
-  console.log("TODAY", currentDate)
-  console.log("TASK DATE", task.date)
 
   const deleteTodo = (event) => {
     console.log("DELETING")
@@ -71,7 +70,6 @@ const Task = ({ task, index }) => {
                 className='icon-container'
                 src={icon}
               />}
-            {console.log("TEST FUNCTION", determineAlert())}
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
@@ -80,5 +78,11 @@ const Task = ({ task, index }) => {
     </Draggable>
   )
 }
+
+Task.propTypes = {
+  task: PropTypes.object.isRequired, 
+  index: PropTypes.number.isRequired
+};
+
 
 export default Task

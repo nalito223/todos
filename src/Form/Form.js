@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getData, postData, deleteData, putData, } from "../apicalls"
 import "../Form/Form.css"
 
-const Form = (props) => {
+const Form = () => {
 
   const getDate = new Date()
   let day = getDate.getDate()
@@ -30,7 +30,7 @@ const Form = (props) => {
       status: columnData,
       destination: { droppableId: columnData, index: 25 }
     }
-    console.log("NEW TASK", newTodo)
+    // console.log("NEW TASK", newTodo)
     postData(newTodo, "http://localhost:3001/todos")
     clearInputs()
     window.location.reload(true)

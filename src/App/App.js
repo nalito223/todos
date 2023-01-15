@@ -28,7 +28,7 @@ function App() {
   const reset = async (newTodo) => {
     // setData([])
     // setInitialData(boardObject)
-  
+
     window.location.reload(true)
     // try {
     //   const response = await getData("http://localhost:3001/todos")
@@ -94,7 +94,6 @@ function App() {
 
   useEffect(() => {
     initApp()
-    console.log("initApp()")
   }, [])
 
   const onDragEnd = (result) => {
@@ -142,9 +141,9 @@ function App() {
       // console.log("LOOK HERE 2", object.tasks)
       Object.keys(object.tasks).forEach((key) => {
         let newPost = object.tasks[key]
-        console.log("newPost 2", newPost)
+        // console.log("newPost 2", newPost)
         putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
-        console.log("new post 2 AFTER", newPost)
+        // console.log("new post 2 AFTER", newPost)
       })
       setInitialData(newState)
       return
@@ -170,11 +169,11 @@ function App() {
         [newFinish.id]: newFinish,
       }
     }
-    console.log("NEW FINISH", newFinish)
-    console.log("DESTINATION", destination)
-    console.log("SOURCE", source)
-    console.log("DRAGGABLE ID", draggableId)
-    console.log("NEW STATE", newState)
+    // console.log("NEW FINISH", newFinish)
+    // console.log("DESTINATION", destination)
+    // console.log("SOURCE", source)
+    // console.log("DRAGGABLE ID", draggableId)
+    // console.log("NEW STATE", newState)
 
     let object = newState
     object.tasks[draggableId].destination = destination
@@ -190,7 +189,7 @@ function App() {
 
     Object.keys(object.tasks).forEach((key) => {
       let newPost = object.tasks[key]
-      console.log("LOOK HERE 1", newPost)
+      // console.log("LOOK HERE 1", newPost)
       putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
       // .then((response) => console.log("PUT RESPONSE",response))
 
@@ -200,21 +199,30 @@ function App() {
   }
 
   return (
-    <div className="App-container">
-      <h1 className="App-header">Todos</h1>
-      <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} reset={reset} />
-      <DragDropContext
-        onDragEnd={onDragEnd}
-      >
-        <Container>
-          {initialData.columnOrder.map(columnId => {
-            const column = initialData.columns[columnId]
-            const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
-            return <Column key={column.id} column={column} tasks={tasks} />
-          })}
-        </Container>
-      </DragDropContext>
-    </div>
+    <main className="App-container">
+      {/* <h1 className="App-header">Todos</h1>
+      <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} reset={reset} /> */}
+      <Routes>
+        <Route
+          path="/todos"
+          element={
+            <DragDropContext onDragEnd={onDragEnd}>
+              <h1 className="App-header">Todos</h1>
+              <Form initApp={initApp} initialData={initialData} setInitialData={setInitialData} makeDNDObject={makeDNDObject} setData={setData} reset={reset} />
+              <Container>
+                {initialData.columnOrder.map(columnId => {
+                  const column = initialData.columns[columnId]
+                  const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
+                  return <Column key={column.id} column={column} tasks={tasks} />
+                })}
+              </Container>
+            </DragDropContext>}
+        />
+
+
+
+      </Routes>
+    </main>
   )
 }
 
