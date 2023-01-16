@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5
 
 ## Installation instructions
 1. Clone this repository 
-2. CD into the directory and run `npm install` and `yarn install`
+2. CD into the directory and run `yarn install`
 3. Run `npm start`
 4. [Clone the API](https://github.com/nalito223/api-todos)
 5. CD into the directory and Run `npm install`
