@@ -22,6 +22,8 @@ https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5
 ## Installation instructions
 1. Clone this repository 
 2. CD into the directory and run `npm install` and `yarn install`
-3. [Clone the API](https://github.com/nalito223/api-todos)
-4. CD into the directory and Run `npm install`
-5. Navigate to to your local server (listed in your terminal) in your web browser to view the live page
+3. Run `npm start`
+4. [Clone the API](https://github.com/nalito223/api-todos)
+5. CD into the directory and Run `npm install`
+6. Run `node server.js`
+7. Navigate to to your local server (listed in your terminal) in your web browser to view the live page
