@@ -10,12 +10,12 @@ const Form = () => {
   let year = getDate.getFullYear()
   let currentDate = `${year}-${month}-${day}`
 
-  const [contentData, setContent] = useState("No title")
+  const [contentData, setContent] = useState("")
   const [columnData, setColumn] = useState("column-1")
   const [dateData, setDate] = useState(currentDate)
 
   const clearInputs = () => {
-    setContent("No title")
+    setContent("")
     setColumn("column-1")
     setDate(currentDate)
   }
@@ -24,7 +24,7 @@ const Form = () => {
     event.preventDefault()
     const newTodo = {
       id: String(Date.now()),
-      content: contentData,
+      content: contentData || "No title",
       date: dateData,
       status: columnData,
       destination: { droppableId: columnData, index: 25 }
@@ -35,7 +35,7 @@ const Form = () => {
   }
 
   return (
-    <form>
+    <form className="Form-container">
       <input
         className="contentInput"
         placeholder="Make a todo..."

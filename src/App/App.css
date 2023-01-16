@@ -19,3 +19,19 @@
 h3 {
   text-align: center;
 }
+
+@media (max-width: 900px) {
+  .sc-eDvSVe{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .App-container{
+    margin-top: 10%;
+  }
+}
+
+
+
+
