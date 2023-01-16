@@ -29,5 +29,5 @@ https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5
 3. Run `npm start`
 4. [Clone the API respository](https://github.com/nalito223/api-todos)
 5. CD into the directory and run `npm install`
-6. Run `node server.js`
+6. Run `nodemon server.js`
 7. Navigate to to your local server (listed in your terminal) in your web browser to view the live page
