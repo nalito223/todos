@@ -10,6 +10,7 @@ import styled from "styled-components"
 import { DragDropContext } from 'react-beautiful-dnd'
 import Form from "../Form/Form"
 import Login from "../Login/Login"
+import Error from "../Error/Error"
 
 const Container = styled.div`
   display: flex;
@@ -172,6 +173,7 @@ function App() {
               </Container>
             </DragDropContext>}
         />
+        <Route path="/*" element={<Error/>}/>
       </Routes>
     </main>
   )

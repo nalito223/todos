@@ -19,6 +19,19 @@ describe('Landing page', () => {
       .should('include', '/todos')
   })
 
+  it('Should have 404 page for non existent routes', () => {
+    cy.visit('http://localhost:3000/test')
+    cy.get('.Error-header')
+      .should('have.text', '404: Page not found')
+    cy.get('.Error-button')
+      .url()
+      .should('include', '/')
+    cy.get('.Error-button')
+      .click()
+    cy.get('.Login-header')
+      .should('have.text', 'Get started with Todos')
+  })
+
   it('Should have a logo', () => {
     cy.get('h1')
       .contains("Todos")
@@ -49,7 +62,7 @@ describe('Landing page', () => {
     cy.get('.addButton')
       .contains("Add")
   })
-  
+
   it('Should have all four status columns', () => {
     cy.get('.sc-eDvSVe')
       .contains("Backlog")
