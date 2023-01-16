@@ -16,6 +16,27 @@
   -webkit-background-clip: text;
 }
 
+.home-link:link,.home-link:link,.home-link:link, .home-link:link {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
 h3 {
   text-align: center;
 }
+
+@media (max-width: 900px) {
+  .sc-eDvSVe{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .App-container{
+    margin-top: 10%;
+  }
+}
+
+
+
+

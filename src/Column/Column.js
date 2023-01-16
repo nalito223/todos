@@ -6,9 +6,8 @@ import PropTypes from 'prop-types'
 
 const Container = styled.div`
   margin: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 7px;
-  width: 122.5%;
+  width: 100%;
   height: 100%
   display: flex;
   flex-direction: column;
@@ -16,7 +15,7 @@ const Container = styled.div`
 `
 const Title = styled.h3`
   padding: 8px;
-  font-size: 3.5vh;
+  font-size: 4.5vh;
   font-weight: 600;
   background-image: linear-gradient(to left, #553c9a, #b393d3);
   color: transparent;
@@ -28,12 +27,12 @@ const TaskList = styled.div`
   transition: background0-color 0.2 ease
   flex-grow: 1;
   min-height: 100px;
-  &:hover {
-    border-color: lightblue;
-`
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  `
 const Column = ({ column, tasks }) => {
   return (
-    <Container className="test">
+    <Container>
       <Title>{column.title}</Title>
       <Droppable droppableId={column.id}>
         {provided => (
