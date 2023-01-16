@@ -16,7 +16,6 @@ font-size: 2.75vh;
 &:hover {
   border: 2px solid #b393d3;
   `
-  // border: 2px solid rgba(255, 255, 255, 0.2);
 
 const Task = ({ task, index }) => {
   var today = new Date()
@@ -53,6 +52,7 @@ const Task = ({ task, index }) => {
     deleteData(`http://localhost:3001/todos/${task.id}`)
     window.location.reload(true)
   }
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (

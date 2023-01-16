@@ -1,5 +1,5 @@
 import './App.css'
-import { NavLink, Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Route, Routes } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { getData, putData, } from "../apicalls"

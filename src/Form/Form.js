@@ -36,6 +36,7 @@ const Form = () => {
 
   return (
     <form className="Form-container">
+
       <input
         className="contentInput"
         placeholder="Make a todo..."
@@ -72,6 +73,7 @@ const Form = () => {
         className="addButton"
         onClick={event => submitTodo(event)}
       >Add</button>
+
     </form>
   )
 }

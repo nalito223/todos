@@ -1,5 +1,4 @@
 //GET DATA
-
 function getData(url) {
   return fetch(url)
     .then((response) => {

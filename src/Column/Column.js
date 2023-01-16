@@ -13,8 +13,6 @@ const Container = styled.div`
   flex-direction: column;
   background-color: none
 `
-// border: 2px solid rgba(255, 255, 255, 0.2);
-// width: 122.5%;
 const Title = styled.h3`
   padding: 8px;
   font-size: 4.5vh;
@@ -32,7 +30,6 @@ const TaskList = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 7px;
   `
-  // box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 const Column = ({ column, tasks }) => {
   return (
     <Container>
