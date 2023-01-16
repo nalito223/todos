@@ -10,6 +10,7 @@ https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5
 - Express API
 - Html 
 - CSS
+- Node.js
 
 ## Libraries and frameworks
 - React Router
