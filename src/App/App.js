@@ -11,6 +11,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Form from "../Form/Form"
 import Login from "../Login/Login"
 import Error from "../Error/Error"
+import Modal from "../Modal/Modal"
 
 const Container = styled.div`
   display: flex;
@@ -173,6 +174,7 @@ function App() {
               </Container>
             </DragDropContext>}
         />
+        {/* <Route path="/modal" element={<Modal/>}/> */}
         <Route path="/*" element={<Error/>}/>
       </Routes>
     </main>

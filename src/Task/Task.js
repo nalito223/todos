@@ -1,10 +1,11 @@
-import React from "react"
+import React, {useState} from "react"
 import styled from 'styled-components'
 import { Draggable } from "react-beautiful-dnd"
 import { deleteData } from "../apicalls"
 import icon from "../images/icon.png"
 import "../Task/Task.css"
 import PropTypes from 'prop-types'
+import Modal from "../Modal/Modal"
 
 const Container = styled.div`
 padding: 8px;
@@ -18,6 +19,9 @@ font-size: 2.75vh;
   `
 
 const Task = ({ task, index }) => {
+
+  const [modal, setModal] = useState(false)
+
   var today = new Date()
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000))
   tomorrow.setDate(tomorrow.getDate())
@@ -35,6 +39,7 @@ const Task = ({ task, index }) => {
   const dateToday = new Date()
   const dateTask = new Date(task.date)
 
+
   const determineAlert = () => {
     if (task.date === currentDate) {
       return true
@@ -48,7 +53,6 @@ const Task = ({ task, index }) => {
   }
 
   const deleteTodo = (event) => {
-    console.log("DELETING")
     deleteData(`http://localhost:3001/todos/${task.id}`)
     window.location.reload(true)
   }
@@ -71,9 +75,11 @@ const Task = ({ task, index }) => {
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
+          <Modal task={task} index={index}/>
         </Container>
       )}
     </Draggable>
+    
   )
 }
 
