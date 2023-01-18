@@ -6,6 +6,8 @@ import icon from "../images/icon.png"
 import "../Task/Task.css"
 import PropTypes from 'prop-types'
 import Modal from "../Modal/Modal"
+import { Route, Routes } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 
 const Container = styled.div`
 padding: 8px;
@@ -21,6 +23,7 @@ font-size: 2.75vh;
 const Task = ({ task, index }) => {
 
   const [modal, setModal] = useState(false)
+  const [modalData, setModalData] = useState({})
 
   var today = new Date()
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000))
@@ -56,7 +59,11 @@ const Task = ({ task, index }) => {
     deleteData(`http://localhost:3001/todos/${task.id}`)
     window.location.reload(true)
   }
-
+  const toggleModal = () => {
+    console.log("toggle modal", task)
+ setModalData(task)
+    setModal(!modal)
+  }
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (
@@ -65,7 +72,7 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <p>{task.content}</p>
+          <NavLink to={`/${task.id}`} onClick={toggleModal} className="edit-link" ><p className="edit-link">{task.content}</p></NavLink>
           <p className="content">
             {determineAlert() &&
               <img
@@ -75,6 +82,11 @@ const Task = ({ task, index }) => {
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
+          <Routes>
+          {modal && <Route path="/edit/:id" element={<Modal task={task}  id={task.id} index={index}/>} />}
+          </Routes> 
+           {modal && <Modal task={modalData}/>}
+         
           <Modal task={task} index={index}/>
         </Container>
       )}

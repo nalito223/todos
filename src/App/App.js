@@ -174,7 +174,6 @@ function App() {
               </Container>
             </DragDropContext>}
         />
-        {/* <Route path="/modal" element={<Modal/>}/> */}
         <Route path="/*" element={<Error/>}/>
       </Routes>
     </main>
@@ -182,3 +181,4 @@ function App() {
 }
 
 export default App
+{/* <Route path="/modal" element={<Modal/>}/> */}
