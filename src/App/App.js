@@ -11,7 +11,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Form from "../Form/Form"
 import Login from "../Login/Login"
 import Error from "../Error/Error"
-import Modal from "../Modal/Modal"
+// import Modal from "../Modal/Modal"
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +23,7 @@ function App() {
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
   const [randomState, setRandomState] = useState()
+  const [modal, setModal] = useState({})
 
   const makeDNDObject = (response) => {
     const sorted = [...response]
@@ -174,6 +175,7 @@ function App() {
               </Container>
             </DragDropContext>}
         />
+        {/* {modal && <Route path="/todos/:id" element={<Modal/>}/>} */}
         <Route path="/*" element={<Error/>}/>
       </Routes>
     </main>
