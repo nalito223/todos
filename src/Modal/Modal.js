@@ -45,7 +45,9 @@ const Modal = ({ task, toggleModal }) => {
         <div className='overlay' onClick={toggleModal}> </div>
         {/* </NavLink> */}
         <div className='modal-container'>
-          
+
+        <center className="edit-todo">Edit todo</center>
+
           <input
             className="contentInput-Modal "
             type="text"
