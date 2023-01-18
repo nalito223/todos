@@ -158,7 +158,7 @@ function App() {
           element={<Login />}
         />
         <Route
-          path="/todos"
+          path="/todos/*"
           element={
             <DragDropContext onDragEnd={onDragEnd}>
               <NavLink to="/" className="home-link">

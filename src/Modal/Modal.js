@@ -5,46 +5,46 @@ import "../Modal/Modal.css"
 import { NavLink } from "react-router-dom"
 import ReactPlayer from 'react-player'
 
-const Modal = ({ task, index }) => {
+const Modal = ({ task, toggleModal }) => {
+  console.log("Made it to modal!", task)
   const [modal, setModal] = useState(false)
-  const toggleModal = () => {
-    setModal(!modal)
-  }
+  // const toggleModal = () => {
+  //   setModal(!modal)
+  // }
   return (
     <div>
-      <button
+      {/* <button
         className="btn-modal"
         onClick={toggleModal}
-      >
-        Open
-      </button>
-      {modal &&
+      >Open
+      </button> */}
+      {/* {modal && */}
         <div className="modal">
-          <div
-            className='overlay'
-            onClick={toggleModal}>
-          </div>
+          <div className='overlay' onClick={toggleModal}> </div>
           <div className='modal-content'>
-            <p>
-              Title:
-              <input className="Modal-content-input"
-                value={task.content}></input>
-                  
+            <p>Title:
+             
+                {task.content}
+            
             </p>
             <p>
-            Date: 
-            <input className="Modal-content-input"
-                value={task.date}></input>
+              Date:
+            
+               
+                {task.date}
 
+              
             </p>
+            <NavLink to="/todos">
             <button
               className='close-modal'
               onClick={toggleModal}>
               Close
             </button>
+            </NavLink>
           </div>
         </div>
-      }
+{/* } */}
 
     </div>
   )

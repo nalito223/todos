@@ -23,7 +23,8 @@ font-size: 2.75vh;
 const Task = ({ task, index }) => {
 
   const [modal, setModal] = useState(false)
-  const [modalData, setModalData] = useState({})
+  const [modalData, setModalData] = useState(task)
+
 
   var today = new Date()
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000))
@@ -59,11 +60,14 @@ const Task = ({ task, index }) => {
     deleteData(`http://localhost:3001/todos/${task.id}`)
     window.location.reload(true)
   }
+
   const toggleModal = () => {
     console.log("toggle modal", task)
  setModalData(task)
     setModal(!modal)
+   
   }
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {provided => (
@@ -72,7 +76,7 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <NavLink to={`/${task.id}`} onClick={toggleModal} className="edit-link" ><p className="edit-link">{task.content}</p></NavLink>
+          <NavLink to={`edit/${task.id}`} onClick={toggleModal} className="edit-link" ><p className="edit-link">{task.content}</p></NavLink>
           <p className="content">
             {determineAlert() &&
               <img
@@ -82,12 +86,13 @@ const Task = ({ task, index }) => {
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
-          <Routes>
-          {modal && <Route path="/edit/:id" element={<Modal task={task}  id={task.id} index={index}/>} />}
-          </Routes> 
-           {modal && <Modal task={modalData}/>}
-         
-          <Modal task={task} index={index}/>
+          {/* <Routes>
+          {modalData.id && <Route path="todos/edit/:id" element={<Modal task={task}/>} />}
+          </Routes>  */}
+
+         {modal && <Modal task={modalData} toggleModal={toggleModal} />}
+         {console.log("modal data",  modalData)}
+          {/* <Modal task={task} index={index}/> */}
         </Container>
       )}
     </Draggable>
