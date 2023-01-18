@@ -41,17 +41,14 @@ const Modal = ({ task, toggleModal }) => {
   return (
     <form>
       <div className="modal">
-        <NavLink to="/todos">
-          <div className='overlay' onClick={toggleModal}> </div>
-        </NavLink>
+        {/* <NavLink to="/todos"> */}
+        <div className='overlay' onClick={toggleModal}> </div>
+        {/* </NavLink> */}
         <div className='modal-container'>
-          {/* <p>Title: {task.content}</p>
-          <p>Date: {task.date}</p> */}
+          
           <input
             className="contentInput-Modal "
-            // placeholder="Make a todo..."
             type="text"
-            // name="content"
             value={contentDataModal}
             onChange={event => setContentModal(event.target.value)}
           ></input>
@@ -59,7 +56,6 @@ const Modal = ({ task, toggleModal }) => {
           <input
             className="dateInput-Modal"
             type="date"
-            // name="date"
             value={dateDataModal}
             onChange={event => setDateModal(event.target.value)}
             min={currentDate}
@@ -79,18 +75,23 @@ const Modal = ({ task, toggleModal }) => {
             <option value="column-4">Done</option>
           </select>
 
+          {/* <NavLink to="/todos"> */}
           <button
             className="addButton-Modal"
-            onClick={event => submitTodo(event)}
-          >Add</button>
+            onClick={event => submitTodo(event)}>
+            Add
+          </button>
+          {/* </NavLink> */}
 
-          <NavLink to="/todos">
-            <button
-              className='close-modal'
-              onClick={toggleModal}>
-              Close
-            </button>
-          </NavLink>
+
+          {/* <NavLink to="/todos"> */}
+          <button
+            className='close-modal'
+            onClick={toggleModal}>
+            Close
+          </button>
+          {/* </NavLink> */}
+
         </div>
       </div>
     </form>

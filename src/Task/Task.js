@@ -74,9 +74,10 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <NavLink to={`edit/${task.id}`} onClick={toggleModal} className="edit-link" >
+          {/* original NavLink for <p> below to={`edit/${task.id}`} */}
+          <p onClick={toggleModal} className="edit-link" >
             <p className="edit-link">{task.content}</p>
-          </NavLink>
+          </p>
           <p className="content">
             {determineAlert() &&
               <img
