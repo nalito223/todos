@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import styled from 'styled-components'
 import { Draggable } from "react-beautiful-dnd"
 import { deleteData } from "../apicalls"
@@ -24,7 +24,6 @@ const Task = ({ task, index }) => {
 
   const [modal, setModal] = useState(false)
   const [modalData, setModalData] = useState(task)
-
 
   var today = new Date()
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000))
@@ -63,9 +62,8 @@ const Task = ({ task, index }) => {
 
   const toggleModal = () => {
     console.log("toggle modal", task)
- setModalData(task)
+    setModalData(task)
     setModal(!modal)
-   
   }
 
   return (
@@ -76,7 +74,9 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <NavLink to={`edit/${task.id}`} onClick={toggleModal} className="edit-link" ><p className="edit-link">{task.content}</p></NavLink>
+          <NavLink to={`edit/${task.id}`} onClick={toggleModal} className="edit-link" >
+            <p className="edit-link">{task.content}</p>
+          </NavLink>
           <p className="content">
             {determineAlert() &&
               <img
@@ -86,17 +86,11 @@ const Task = ({ task, index }) => {
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
-          {/* <Routes>
-          {modalData.id && <Route path="todos/edit/:id" element={<Modal task={task}/>} />}
-          </Routes>  */}
-
-         {modal && <Modal task={modalData} toggleModal={toggleModal} />}
-         {console.log("modal data",  modalData)}
-          {/* <Modal task={task} index={index}/> */}
+          {modal && <Modal task={modalData} toggleModal={toggleModal} />}
         </Container>
       )}
     </Draggable>
-    
+
   )
 }
 
