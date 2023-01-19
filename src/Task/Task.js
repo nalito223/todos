@@ -56,7 +56,7 @@ const Task = ({ task, index, setData, makeDNDObject }) => {
   }
 
   const deleteTodo = () => {
-    deleteData(`https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${task.id}`)
+    deleteData(`https://api-todos.vercel.app/todos/${task.id}`)
       .then(() => window.location.reload(true))
   }
 

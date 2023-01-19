@@ -35,7 +35,7 @@ const Form = () => {
     // makeDNDObject(data)
     // setData(Date.now())
 
-    postData(newTodo, "https://api-todos-boglmsk6z-nalito223.vercel.app/todos/")
+    postData(newTodo, "https://api-todos.vercel.app/todos")
       .then(() => window.location.reload(true))
     clearInputs()
   }

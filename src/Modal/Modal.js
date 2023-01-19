@@ -31,7 +31,7 @@ const Modal = ({ task, toggleModal }) => {
       status: columnDataModal,
       destination: { droppableId: columnDataModal, index: 25 }
     }
-    putData(newTodo, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${task.id}`)
+    putData(newTodo, `https://api-todos.vercel.app/todos/${task.id}`)
       .then(() => window.location.reload(true))
     // clearInputs()
   }

@@ -48,7 +48,7 @@ function App() {
 
   const initApp = async () => {
     try {
-      const response = await getData("https://api-todos-boglmsk6z-nalito223.vercel.app/todos")
+      const response = await getData("https://api-todos.vercel.app/todos")
       setData(response)
        makeDNDObject(response)
       // {data && makeDNDObject(data)}
@@ -103,12 +103,20 @@ function App() {
         object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id) + 1
       })
 
-      Object.keys(object.tasks).forEach((key) => {
-        const newPost = object.tasks[key]
-        console.log("PUT URL", `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
-        putData(newPost, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
-        .then((response) => console.log(response))
-      })
+      // Object.keys(object.tasks).forEach((key) => {
+      //   const newPost = object.tasks[key]
+      //   // console.log("PUT URL", `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
+      //   putData(newPost, `https://api-todos.vercel.app/todos/${object.tasks[key].id}`)
+      //   .then((response) => console.log(response))
+      // })
+
+      for (var i = 0; i < Object.keys(object.tasks).length; i++) {
+        let newPost = object.tasks[Object.keys(object.tasks)[i]]
+          console.log("LOOK HERE",newPost.id)
+          putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+          .then((response) =>console.log(response))
+      }
+
       setInitialData(newState)
       return
     }
@@ -146,14 +154,22 @@ function App() {
       })
     })
 
-    Object.keys(object.tasks).forEach((key) => {
-      let newPost = object.tasks[key]
-      console.log("LOOK HERE",newPost)
-      console.log("LOOK HERE",newPost.id)
-      putData(newPost, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
-      .then((response) =>console.log(response))
+    // Object.keys(object.tasks).forEach((key) => {
+    //   let newPost = object.tasks[key]
+    //   console.log("LOOK HERE",newPost)
+    //   console.log("LOOK HERE",newPost.id)
+    //   putData(newPost, `https://api-todos.vercel.app/todos/${object.tasks[key].id}`)
+    //   .then((response) =>console.log(response))
 
-    })
+    // })
+
+    for (var i = 0; i < Object.keys(object.tasks).length; i++) {
+      let newPost = object.tasks[Object.keys(object.tasks)[i]]
+        console.log("LOOK HERE",newPost.id)
+        putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+        .then((response) =>console.log(response))
+    }
+
     setInitialData(newState)
   }
 
