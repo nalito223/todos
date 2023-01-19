@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from 'styled-components'
 import { Draggable } from "react-beautiful-dnd"
 import { deleteData } from "../apicalls"
 import icon from "../images/icon.png"
 import "../Task/Task.css"
 import PropTypes from 'prop-types'
+import Modal from "../Modal/Modal"
+import { Route, Routes } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 
 const Container = styled.div`
 padding: 8px;
@@ -17,7 +20,11 @@ font-size: 2.75vh;
   border: 2px solid #b393d3;
   `
 
-const Task = ({ task, index }) => {
+const Task = ({ task, index, setData, makeDNDObject }) => {
+
+  const [modal, setModal] = useState(false)
+  const [modalData, setModalData] = useState(task)
+
   var today = new Date()
   var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000))
   tomorrow.setDate(tomorrow.getDate())
@@ -35,6 +42,7 @@ const Task = ({ task, index }) => {
   const dateToday = new Date()
   const dateTask = new Date(task.date)
 
+
   const determineAlert = () => {
     if (task.date === currentDate) {
       return true
@@ -48,9 +56,13 @@ const Task = ({ task, index }) => {
   }
 
   const deleteTodo = (event) => {
-    console.log("DELETING")
     deleteData(`http://localhost:3001/todos/${task.id}`)
     window.location.reload(true)
+  }
+
+  const toggleModal = () => {
+    setModalData(task)
+    setModal(!modal)
   }
 
   return (
@@ -61,7 +73,10 @@ const Task = ({ task, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <p>{task.content}</p>
+          {/* original NavLink for <p> below to={`edit/${task.id}`} */}
+          <div onClick={toggleModal} className="edit-link" >
+            <p className="edit-link">{task.content}</p>
+          </div>
           <p className="content">
             {determineAlert() &&
               <img
@@ -71,9 +86,11 @@ const Task = ({ task, index }) => {
             {`Due: ${task.date}`}
           </p>
           <button onClick={(event) => deleteTodo()} className="deleteButton">Delete</button>
+          {modal && <Modal task={modalData} toggleModal={toggleModal} />}
         </Container>
       )}
     </Draggable>
+
   )
 }
 

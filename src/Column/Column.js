@@ -30,7 +30,7 @@ const TaskList = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 7px;
   `
-const Column = ({ column, tasks }) => {
+const Column = ({ column, tasks, setData, makeDNDObject }) => {
   return (
     <Container>
       <Title>{column.title}</Title>
@@ -41,7 +41,7 @@ const Column = ({ column, tasks }) => {
             {...provided.droppableProps}
           >
             {tasks.map((task, index) => (
-              <Task key={task.id} task={task} index={index} />
+              <Task key={task.id} task={task} index={index} setData={setData} makeDNDObject={makeDNDObject} />
             ))}
             {provided.placeholder}
           </TaskList>

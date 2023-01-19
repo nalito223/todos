@@ -33,7 +33,8 @@ h3 {
 
 @media (max-width: 900px) {
   .App-container{
-    margin-top: 10%;
+    padding-top: 150px;
+    padding-bottom: 250px;
   }
 }
 

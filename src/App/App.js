@@ -11,6 +11,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Form from "../Form/Form"
 import Login from "../Login/Login"
 import Error from "../Error/Error"
+// import Modal from "../Modal/Modal"
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +22,8 @@ function App() {
 
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
-  const [randomState, setRandomState] = useState()
+  // const [randomState, setRandomState] = useState()
+  // const [modal, setModal] = useState({})
 
   const makeDNDObject = (response) => {
     const sorted = [...response]
@@ -48,7 +50,8 @@ function App() {
     try {
       const response = await getData("http://localhost:3001/todos")
       setData(response)
-      makeDNDObject(response)
+       makeDNDObject(response)
+      // {data && makeDNDObject(data)}
     }
     catch (error) {
       console.log(error)
@@ -157,22 +160,23 @@ function App() {
           element={<Login />}
         />
         <Route
-          path="/todos"
+          path="/todos/*"
           element={
             <DragDropContext onDragEnd={onDragEnd}>
               <NavLink to="/" className="home-link">
                 <h1 className="App-header"  >Todos</h1>
               </NavLink>
-              <Form />
+              <Form setData={setData} makeDNDObject={makeDNDObject} data={data} />
               <Container>
                 {initialData.columnOrder.map(columnId => {
                   const column = initialData.columns[columnId]
                   const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
-                  return <Column key={column.id} column={column} tasks={tasks} />
+                  return <Column key={column.id} column={column} tasks={tasks} setData={setData} makeDNDObject={makeDNDObject}/>
                 })}
               </Container>
             </DragDropContext>}
         />
+        {/* {modal && <Route path="/todos/:id" element={<Modal/>}/>} */}
         <Route path="/*" element={<Error/>}/>
       </Routes>
     </main>
@@ -180,3 +184,4 @@ function App() {
 }
 
 export default App
+{/* <Route path="/modal" element={<Modal/>}/> */}

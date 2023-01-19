@@ -22,3 +22,18 @@
 .content {
   font-size: 2vh;
 }
+
+.edit-link {
+  font-size: 2.5vh;
+}
+
+.edit-link:link {
+  text-decoration: none;
+
+}
+
+.edit-link:hover {
+  border-bottom: 2px solid #b393d3;
+  width: fit-content
+}
+
