@@ -24,7 +24,6 @@ const Modal = ({ task, toggleModal }) => {
 
   const submitTodo = event => {
     event.preventDefault()
-    console.log("MADE IT TO SUBMIT TODO")
     const newTodo = {
       id: task.id,
       content: contentDataModal || "No title",
@@ -32,7 +31,6 @@ const Modal = ({ task, toggleModal }) => {
       status: columnDataModal,
       destination: { droppableId: columnDataModal, index: 25 }
     }
-    console.log("MODAL PUT", newTodo)
     putData(newTodo, `http://localhost:3001/todos/${task.id}`).then((response) => console.log(response))
     // clearInputs()
     window.location.reload(true)
