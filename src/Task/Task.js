@@ -55,9 +55,9 @@ const Task = ({ task, index, setData, makeDNDObject }) => {
     }
   }
 
-  const deleteTodo = (event) => {
-    deleteData(`http://localhost:3001/todos/${task.id}`)
-    window.location.reload(true)
+  const deleteTodo = () => {
+    deleteData(`https://api-todos.vercel.app/todos/${task.id}`)
+      .then(() => window.location.reload(true))
   }
 
   const toggleModal = () => {

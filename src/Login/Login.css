@@ -24,6 +24,10 @@
   background-color: #553c9a;
 }
 
+.Login-button-link:link {
+  text-decoration: none;
+}
+
 .react-player-container {
   display: flex;
   flex-direction: column;
