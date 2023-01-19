@@ -29,6 +29,12 @@ const Form = () => {
       status: columnData,
       destination: { droppableId: columnData, index: 25 }
     }
+
+    // data.push(newTodo)
+    // console.log("FORM",data)
+    // makeDNDObject(data)
+    // setData(Date.now())
+
     postData(newTodo, "http://localhost:3001/todos")
     clearInputs()
     window.location.reload(true)

@@ -23,8 +23,13 @@
   font-size: 2vh;
 }
 
+.edit-link {
+  font-size: 2.5vh;
+}
+
 .edit-link:link {
   text-decoration: none;
+
 }
 
 .edit-link:hover {

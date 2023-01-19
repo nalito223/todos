@@ -81,7 +81,7 @@ const Modal = ({ task, toggleModal }) => {
           <button
             className="addButton-Modal"
             onClick={event => submitTodo(event)}>
-            Add
+            Update
           </button>
           {/* </NavLink> */}
 

@@ -20,7 +20,7 @@ font-size: 2.75vh;
   border: 2px solid #b393d3;
   `
 
-const Task = ({ task, index }) => {
+const Task = ({ task, index, setData, makeDNDObject }) => {
 
   const [modal, setModal] = useState(false)
   const [modalData, setModalData] = useState(task)
@@ -61,7 +61,6 @@ const Task = ({ task, index }) => {
   }
 
   const toggleModal = () => {
-    console.log("toggle modal", task)
     setModalData(task)
     setModal(!modal)
   }
@@ -75,9 +74,9 @@ const Task = ({ task, index }) => {
           ref={provided.innerRef}
         >
           {/* original NavLink for <p> below to={`edit/${task.id}`} */}
-          <p onClick={toggleModal} className="edit-link" >
+          <div onClick={toggleModal} className="edit-link" >
             <p className="edit-link">{task.content}</p>
-          </p>
+          </div>
           <p className="content">
             {determineAlert() &&
               <img
