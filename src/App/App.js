@@ -48,7 +48,7 @@ function App() {
 
   const initApp = async () => {
     try {
-      const response = await getData("http://localhost:3001/todos")
+      const response = await getData("https://api-todos-boglmsk6z-nalito223.vercel.app/todos")
       setData(response)
        makeDNDObject(response)
       // {data && makeDNDObject(data)}
@@ -104,8 +104,10 @@ function App() {
       })
 
       Object.keys(object.tasks).forEach((key) => {
-        let newPost = object.tasks[key]
-        putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
+        const newPost = object.tasks[key]
+        console.log("PUT URL", `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
+        putData(newPost, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
+        .then((response) => console.log(response))
       })
       setInitialData(newState)
       return
@@ -146,7 +148,10 @@ function App() {
 
     Object.keys(object.tasks).forEach((key) => {
       let newPost = object.tasks[key]
-      putData(newPost, `http://localhost:3001/todos/${object.tasks[key].id}`)
+      console.log("LOOK HERE",newPost)
+      console.log("LOOK HERE",newPost.id)
+      putData(newPost, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
+      .then((response) =>console.log(response))
 
     })
     setInitialData(newState)

@@ -31,9 +31,9 @@ const Modal = ({ task, toggleModal }) => {
       status: columnDataModal,
       destination: { droppableId: columnDataModal, index: 25 }
     }
-    putData(newTodo, `http://localhost:3001/todos/${task.id}`).then((response) => console.log(response))
+    putData(newTodo, `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${task.id}`)
+      .then(() => window.location.reload(true))
     // clearInputs()
-    window.location.reload(true)
   }
 
   return (
@@ -44,7 +44,7 @@ const Modal = ({ task, toggleModal }) => {
         {/* </NavLink> */}
         <div className='modal-container'>
 
-        <center className="edit-todo">Edit todo</center>
+          <center className="edit-todo">Edit todo</center>
 
           <input
             className="contentInput-Modal "

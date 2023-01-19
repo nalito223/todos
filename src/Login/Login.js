@@ -16,8 +16,8 @@ const Login = () => {
           playing={true}
           loop={true}
         />
-        <NavLink to="/todos">
-          <button className="Login-button" >Get started</button>
+        <NavLink to="/todos" className="Login-button-link">
+          <div className="Login-button" >Get started</div>
         </NavLink>
       </div>
     </div>
