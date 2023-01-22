@@ -50,7 +50,7 @@ function App() {
     try {
       const response = await getData("https://api-todos.vercel.app/todos")
       setData(response)
-       makeDNDObject(response)
+      makeDNDObject(response)
       // {data && makeDNDObject(data)}
     }
     catch (error) {
@@ -113,11 +113,9 @@ function App() {
       const putLoop = async () => {
         for (var i = 0; i < Object.keys(object.tasks).length; i++) {
           let newPost = object.tasks[Object.keys(object.tasks)[i]]
-            console.log("LOOK HERE",newPost.id)
-            await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-            .then((response) =>console.log(response))
+          await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+            .then((response) => console.log(response))
         }
-    
         setInitialData(newState)
       }
       putLoop()
@@ -165,18 +163,17 @@ function App() {
     //   .then((response) =>console.log(response))
 
     // })
-const putLoop = async () => {
-    for (var i = 0; i < Object.keys(object.tasks).length; i++) {
-      let newPost = object.tasks[Object.keys(object.tasks)[i]]
-        console.log("LOOK HERE",newPost.id)
+    const putLoop = async () => {
+      for (var i = 0; i < Object.keys(object.tasks).length; i++) {
+        let newPost = object.tasks[Object.keys(object.tasks)[i]]
         await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-        .then((response) =>console.log(response))
-    }
+          .then((response) => console.log(response))
+      }
 
-    setInitialData(newState)
+      setInitialData(newState)
+    }
+    putLoop()
   }
-  putLoop()
-}
 
   return (
     <main className="App-container">
@@ -197,17 +194,17 @@ const putLoop = async () => {
                 {initialData.columnOrder.map(columnId => {
                   const column = initialData.columns[columnId]
                   const tasks = column.taskIds.map(taskId => initialData.tasks[taskId])
-                  return <Column key={column.id} column={column} tasks={tasks} setData={setData} makeDNDObject={makeDNDObject}/>
+                  return <Column key={column.id} column={column} tasks={tasks} setData={setData} makeDNDObject={makeDNDObject} />
                 })}
               </Container>
             </DragDropContext>}
         />
         {/* {modal && <Route path="/todos/:id" element={<Modal/>}/>} */}
-        <Route path="/*" element={<Error/>}/>
+        <Route path="/*" element={<Error />} />
       </Routes>
     </main>
   )
 }
 
 export default App
-{/* <Route path="/modal" element={<Modal/>}/> */}
+{/* <Route path="/modal" element={<Modal/>}/> */ }

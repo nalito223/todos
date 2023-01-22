@@ -6,8 +6,8 @@ import ReactPlayer from 'react-player'
 const Login = () => {
   return (
     <div className="Login-container">
-      <div className="react-player-container">
-        <h1 className="Login-header">Get started with Todos</h1>
+      {/* <div className="react-player-container"> */}
+        <center><h1 className="Login-header">Get started with Todos</h1></center>
         <ReactPlayer
           url='https://vimeo.com/789586072'
           controls
@@ -19,7 +19,7 @@ const Login = () => {
         <NavLink to="/todos" className="Login-button-link">
           <div className="Login-button" >Get started</div>
         </NavLink>
-      </div>
+      {/* </div> */}
     </div>
   )
 }

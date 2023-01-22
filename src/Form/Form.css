@@ -91,4 +91,16 @@
   .contentInput {
     width: 75vw
   }
+
+  .dateInput {
+    width: fit-content;
+  }
+
+  .columnInput {
+    width: fit-content;
+  }
+
+  .addButton {
+    width: fit-content;
+  }
 }
