@@ -11,8 +11,8 @@ const Container = styled.div`
   height: 100%
   display: flex;
   flex-direction: column;
-  background-color: none
-`
+  align-items: center;
+  `
 const Title = styled.h3`
   padding: 8px;
   font-size: 4.5vh;
