@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5
 - React player 
 
 ## Installation instructions
-1. Clone this frontend repository 
+1. [Clone the frontend repository](https://github.com/nalito223/todos)
 2. CD into the directory and run `yarn install`
 3. Run `npm start`
 4. [Clone the backend API respository](https://github.com/nalito223/api-todos)
