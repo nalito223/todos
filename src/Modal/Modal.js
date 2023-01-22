@@ -5,6 +5,8 @@ import ReactPlayer from 'react-player'
 import { putData } from "../apicalls"
 
 const Modal = ({ task, toggleModal }) => {
+  
+  window.scrollTo(0, 0);
 
   const getDate = new Date()
   let day = getDate.getDate()
