@@ -1,16 +1,17 @@
 ## About
 
-The Todos app makes completing tasks efficient, organized, and rewarding on any size screen. This solo project was completed in one week at Turing School of Software and Design. I built both the front and backend from design to launch. The landing page previews the functionality of Todos before routing the user to a Kanban board where they are able to create todos, edit todos, drag and drop todos into new statuses, and see alerts for todos that are past due or are due within 48 hours.
+The Todos app makes completing tasks efficient, organized, and rewarding on any size screen. This solo project was completed in one week at the Turing School of Software and Design including the front end and back end from design to launch. The landing page previews the functionality of Todos before routing the user to a Kanban board where they are able to create todos, edit todos, drag and drop todos into new statuses, and see alerts for todos that are past due or are due within 48 hours.
+ - [Deployed front end and back end](https://todos-tau-nine.vercel.app/) 
+ - [Front-end repo](https://github.com/nalito223/todos)
+ - [Back-end API repo](https://github.com/nalito223/api-todos)
 
-[Deployed frontend and backend](https://todos-tau-nine.vercel.app/) 
+### Mobile preview
+![mobile-demo](https://user-images.githubusercontent.com/110144802/213944645-7789675b-7a54-462a-9427-850f3c84b0fa.gif)
 
-### Landing page with tutorial
-<img width="721" a src="https://user-images.githubusercontent.com/110144802/212764775-9e5c022a-6e09-44ac-906e-0d904f312229.png">
-
-### Functionality preview
+### Desktop preview
 https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5-975f-ddd791dfd5af.mp4
 
-## Stack
+## Tech highlights
 - React
 - Javascript
 - Express API
