@@ -112,11 +112,22 @@ function App() {
 
       const putLoop = async () => {
         for (var i = 0; i < Object.keys(object.tasks).length; i++) {
-          let newPost = object.tasks[Object.keys(object.tasks)[i]]
-          await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-            .then((response) => console.log(response))
+          // if the original column is x or destination is y then...
+          console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id)
+          console.log("start", start)
+          console.log("finish", finish)
+          console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id)
+          if (
+            object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id ||
+            object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
+          ) {
+            let newPost = object.tasks[Object.keys(object.tasks)[i]]
+            await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+              .then((response) => console.log(response))
+            // .then(() => setInitialData(newState))
+          }
+          setInitialData(newState)
         }
-        setInitialData(newState)
       }
       putLoop()
       return
@@ -165,12 +176,17 @@ function App() {
     // })
     const putLoop = async () => {
       for (var i = 0; i < Object.keys(object.tasks).length; i++) {
-        let newPost = object.tasks[Object.keys(object.tasks)[i]]
-        await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-          .then((response) => console.log(response))
+        if (
+          object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id ||
+          object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
+        ) {
+          let newPost = object.tasks[Object.keys(object.tasks)[i]]
+          await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+            .then((response) => console.log(response))
+          // .then(() => setInitialData(newState))
+        }
+        setInitialData(newState)
       }
-
-      setInitialData(newState)
     }
     putLoop()
   }
