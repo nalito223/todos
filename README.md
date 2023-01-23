@@ -9,7 +9,8 @@ The Todos app makes completing tasks efficient, organized, and rewarding on any 
 ![mobile-demo](https://user-images.githubusercontent.com/110144802/213944645-7789675b-7a54-462a-9427-850f3c84b0fa.gif)
 
 ### Desktop preview
-https://user-images.githubusercontent.com/110144802/212761785-657ea1c5-e764-48f5-975f-ddd791dfd5af.mp4
+![desktop-preview](https://user-images.githubusercontent.com/110144802/213949876-52e8279a-6afd-4f81-886a-ce764a0f79bb.gif)
+
 
 ## Tech highlights
 - React
