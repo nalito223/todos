@@ -227,7 +227,9 @@ function App() {
               <NavLink to="/" className="home-link">
                 <h1 className="App-header"  >Todos</h1>
               </NavLink>
-              <Form setData={setData} makeDNDObject={makeDNDObject} data={data} onAddTodo={onAddTodo} />
+              <Form setData={setData} makeDNDObject={makeDNDObject} data={data} 
+              // onAddTodo={onAddTodo} 
+              />
               <Container>
                 {initialData.columnOrder.map(columnId => {
                   const column = initialData.columns[columnId]
