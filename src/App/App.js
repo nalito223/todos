@@ -103,30 +103,46 @@ function App() {
         object.tasks[key].destination.index = object.columns[destination.droppableId].taskIds.indexOf(object.tasks[key].id) + 1
       })
 
-      // Object.keys(object.tasks).forEach((key) => {
-      //   const newPost = object.tasks[key]
-      //   // console.log("PUT URL", `https://api-todos-boglmsk6z-nalito223.vercel.app/todos/${object.tasks[key].id}`)
-      //   putData(newPost, `https://api-todos.vercel.app/todos/${object.tasks[key].id}`)
-      //   .then((response) => console.log(response))
-      // })
+      // const putLoop = async () => {
+      //   for (var i = 0; i < Object.keys(object.tasks).length; i++) {
+      //     // if the original column is x or destination is y then...
+      //     console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id)
+      //     console.log("start", start)
+      //     console.log("finish", finish)
+      //     console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id)
+      //     if (
+      //       object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id ||
+      //       object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
+      //     ) {
+      //       let newPost = object.tasks[Object.keys(object.tasks)[i]]
+      //       await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+      //         .then((response) => console.log(response))
+      //       // .then(() => setInitialData(newState))
+      //     }
+      //     setInitialData(newState)
+      //   }
+      // }
+      // putLoop()
+
 
       const putLoop = async () => {
         for (var i = 0; i < Object.keys(object.tasks).length; i++) {
-          // if the original column is x or destination is y then...
-          console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id)
-          console.log("start", start)
-          console.log("finish", finish)
-          console.log(object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id)
           if (
             object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id ||
             object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
           ) {
             let newPost = object.tasks[Object.keys(object.tasks)[i]]
+            const updatedData = {
+              ...data,
+              tasks: {
+                ...data.tasks,
+                [newPost.id]: newPost,
+              },
+            }
+            setInitialData(newState)
             await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
               .then((response) => console.log(response))
-            // .then(() => setInitialData(newState))
           }
-          setInitialData(newState)
         }
       }
       putLoop()
@@ -174,6 +190,22 @@ function App() {
     //   .then((response) =>console.log(response))
 
     // })
+    // const putLoop = async () => {
+    //   for (var i = 0; i < Object.keys(object.tasks).length; i++) {
+    //     if (
+    //       object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === start.id ||
+    //       object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
+    //     ) {
+    //       let newPost = object.tasks[Object.keys(object.tasks)[i]]
+    //       await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
+    //         .then((response) => console.log(response))
+    //       // .then(() => setInitialData(newState))
+    //     }
+    //     setInitialData(newState)
+    //   }
+    // }
+    // putLoop()
+
     const putLoop = async () => {
       for (var i = 0; i < Object.keys(object.tasks).length; i++) {
         if (
@@ -181,11 +213,17 @@ function App() {
           object.tasks[Object.keys(object.tasks)[i]].destination.droppableId === finish.id
         ) {
           let newPost = object.tasks[Object.keys(object.tasks)[i]]
+          const updatedData = {
+            ...data,
+            tasks: {
+              ...data.tasks,
+              [newPost.id]: newPost,
+            },
+          }
+          setInitialData(newState)
           await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
             .then((response) => console.log(response))
-          // .then(() => setInitialData(newState))
         }
-        setInitialData(newState)
       }
     }
     putLoop()
