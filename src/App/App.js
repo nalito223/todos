@@ -11,7 +11,6 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import Form from "../Form/Form"
 import Login from "../Login/Login"
 import Error from "../Error/Error"
-// import Modal from "../Modal/Modal"
 
 const Container = styled.div`
   display: flex;
@@ -22,8 +21,6 @@ function App() {
 
   const [data, setData] = useState([])
   const [initialData, setInitialData] = useState(boardObject)
-  // const [randomState, setRandomState] = useState()
-  // const [modal, setModal] = useState({})
 
   const makeDNDObject = (response) => {
     const sorted = [...response]
@@ -51,7 +48,6 @@ function App() {
       const response = await getData("https://api-todos.vercel.app/todos")
       setData(response)
       makeDNDObject(response)
-      // {data && makeDNDObject(data)}
     }
     catch (error) {
       console.log(error)
@@ -149,7 +145,7 @@ function App() {
             }
             setInitialData(newState)
             await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-              // .then((response) => console.log(response))
+              .then((response) => console.log(response))
           }
         }
       }
@@ -206,7 +202,8 @@ function App() {
           }
           setInitialData(newState)
           await putData(newPost, `https://api-todos.vercel.app/todos/${newPost.id}`)
-            // .then((response) => console.log(response))
+             .then((response) => console.log(response))
+
         }
       }
     }
