@@ -1,7 +1,7 @@
 ## About
 
 The Todos app makes completing tasks efficient, organized, and rewarding on any size screen. This solo project was completed in one week at the Turing School of Software and Design including the front end and back end from design to launch. The landing page previews the functionality of Todos before routing the user to a Kanban board where they are able to create todos, edit todos, drag and drop todos into new statuses, and see alerts for todos that are past due or are due within 48 hours.
- - [Deployed front end and back end](https://todos-tau-nine.vercel.app/) 
+ - [View deployed site) 
  - [Front-end repo](https://github.com/nalito223/todos)
  - [Back-end API repo](https://github.com/nalito223/api-todos)
 
